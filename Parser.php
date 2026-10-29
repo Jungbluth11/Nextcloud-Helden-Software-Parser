@@ -62,15 +62,15 @@ class Parser implements XmlParserInterface {
 
 			$value = (int)$property["value"] + (int)$property["mod"];
 			if ($name === "Lebensenergie") {
-				$value = intdiv(2 * $modified("Konstitution") + $modified("Körperkraft"), 2) + (int)$property["value"];
+				$value = intdiv(2 * $modified("Konstitution") + $modified("Körperkraft"), 2) + $modified("Lebensenergie");
 			} elseif ($name === "Ausdauer") {
-				$value = intdiv($modified("Mut") + $modified("Konstitution") + $modified("Gewandtheit"), 2) + (int)$property["value"];
+				$value = intdiv($modified("Mut") + $modified("Konstitution") + $modified("Gewandtheit"), 2) + $modified("Ausdauer");
 			} elseif ($name === "Magieresistenz") {
-				$value = (int)ceil(($modified("Mut") + $modified("Klugheit") + $modified("Konstitution")) / 5) + (int)$property["value"];
+				$value = (int)ceil(($modified("Mut") + $modified("Klugheit") + $modified("Konstitution")) / 5) + $modified("Magieresistenz");
 			} elseif ($name === "Astralenergie") {
 				$value = (int)$property["mod"] === 0
 					? 0
-					: (int)ceil(($modified("Mut") + $modified("Intuition") + ($gefaessDerSterne ? 2 : 1) * $modified("Charisma")) / 2) + (int)$property["value"];
+					: (int)ceil(($modified("Mut") + $modified("Intuition") + ($gefaessDerSterne ? 2 : 1) * $modified("Charisma")) / 2) + $modified("Astralenergie") + (int)$property["grossemeditation"];
 			}
 			
 			if($name == "fk"){
